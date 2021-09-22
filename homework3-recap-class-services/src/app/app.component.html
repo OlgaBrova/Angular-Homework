@@ -1,0 +1,17 @@
+<header class="header">
+  <h1 class="header__brand">Rent-a-car</h1>
+</header>
+<main class="main">
+  <div class="order__showcase">
+    
+    <app-orders
+      *ngFor="let orderItem of orders"
+      [boundOrder]="orderItem"
+      (ngDisplayCar)="displayCar($event)"
+    ></app-orders>
+
+  </div>
+  <div class="car__showcase">
+    <app-car *ngIf="displayCarFlag" [selectedCar]="carToDisplay"></app-car>
+  </div>
+</main>
