@@ -1,0 +1,21 @@
+<div id="card" [ngClass]="gameCard.genre">
+    <img src={{gameCard.imageUrl}} alt="Game">
+    <div class="container">
+        <h4><b>{{ gameCard.id }}. {{ gameCard.title | uppercase | abbreviation }}</b></h4>
+        <p [ngStyle]="{color: 'red'}">Publisher: {{ gameCard.publisher }}</p>
+        <p>Genre: {{ gameCard.genre | uppercase}}</p>
+        <p>Release date: {{ gameCard.releaseDate | date }}</p>
+        <p>Rating: {{ gameCard.rating | percent : "2.0-2"}}</p>
+        <p><b>Price: {{ gameCard.price | currency: "EUR" }}</b></p>
+    </div>
+
+    <button (click)="showDescription()">{{ isDescriptionShown ? "Hide Description" : "Show Description" }}</button>
+
+    <div *ngIf="isDescriptionShown" >{{ gameCard.shortDescription }}</div>
+
+    <br>
+    <hr />
+</div>
+
+
+

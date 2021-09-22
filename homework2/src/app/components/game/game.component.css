@@ -1,0 +1,16 @@
+#card {
+    width: 50%;
+    padding: 30px;
+}
+
+img {
+    max-width: 100%;
+}
+
+.first-person-shooter {
+    background: #5faaff;
+}
+
+.action-adventure {
+    background: #ff978b;
+}
