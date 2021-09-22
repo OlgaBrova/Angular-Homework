@@ -1,0 +1,13 @@
+<h2>Movie-list</h2>
+
+<h3>Movie List Title From App Component: {{movieListTitleFromApp}}</h3>
+<hr>
+
+<app-movie [movieTitleFromApp]="movieTitleFromApp" (movieToMovieList)="onSentMovie($event)"></app-movie>
+
+<h1><b>{{ movieRecieved.name }}</b></h1>
+<p>{{ movieRecieved.producerName }}</p>
+<p>{{ movieRecieved.genre }}</p>
+<p>{{ movieRecieved.releaseDate }}</p>
+
+
