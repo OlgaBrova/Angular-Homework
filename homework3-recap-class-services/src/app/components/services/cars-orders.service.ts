@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Car } from 'src/app/interfaces/car';
 import { CarBrand } from 'src/app/interfaces/car-brand';
 import { Order } from 'src/app/interfaces/order';
@@ -9,6 +9,10 @@ import { Order } from 'src/app/interfaces/order';
 export class CarsOrdersService {
 
   constructor() { }
+
+  carToDisplay: Car;
+  displayCarFlag: boolean = false;
+ 
 
   cars: Car[] = [
     { id: 1, brand: CarBrand.DACIA, model: 'Sandero', rating: 0.807 },
@@ -67,6 +71,13 @@ export class CarsOrdersService {
 
   getOrders() {
     return this.orders;
+  }
+
+  displayCar(displayedCar: Car) {
+    
+    this.carToDisplay = displayedCar;
+   
+    console.log(this.carToDisplay);
   }
 
 }

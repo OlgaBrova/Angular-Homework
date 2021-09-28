@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Car } from './interfaces/car';
 import { Order } from './interfaces/order';
 import { CarsOrdersService } from './components/services/cars-orders.service';
@@ -10,19 +10,19 @@ import { CarsOrdersService } from './components/services/cars-orders.service';
   styleUrls: ['./app.component.css'],
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit{
 
   constructor(private carsOrdersService: CarsOrdersService) {}
 
-  orders: Order [] = this.carsOrdersService.getOrders();
-
-  carToDisplay: Car;
-  displayCarFlag: boolean = false;
+  orders: Order[];
+  displayCarFlag: boolean;
+  car: Car;
   
-  displayCar(car: Car) {
-    console.log('parent:', car);
-    this.displayCarFlag = true;
-    this.carToDisplay = car;
+  ngOnInit(): void {
+    this.orders = this.carsOrdersService.getOrders();
+    this.displayCarFlag = this.carsOrdersService.displayCarFlag;
+    this.car = this.carsOrdersService.carToDisplay;
   }
   
+
 }

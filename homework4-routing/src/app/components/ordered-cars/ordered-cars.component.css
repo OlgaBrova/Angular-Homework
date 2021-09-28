@@ -1,0 +1,30 @@
+h2 {
+    color: #09394d;
+    text-align: center;
+    margin: 30px auto;
+    font-weight: bold; 
+}
+
+.card {
+    margin: 15px;
+    box-shadow: 4px 4px 10px #454647;
+    padding: 10px;
+}
+
+.card-body {
+    border: 1px solid #6882ad;
+    border-radius: 2px;
+    background: #95a5c0;
+}
+
+h4 {
+    font-weight: bold;
+}
+
+.h3Tag {
+    text-align: center;
+}
+
+span{
+    cursor: pointer;
+}

@@ -1,0 +1,28 @@
+<h2>Choose your favourite car</h2>
+
+<div class="container">
+    <div class="row">
+        <div 
+            *ngFor="let car of cars" 
+
+            class="card col-3" 
+            style="width: 18rem;">
+            
+            <img class="card-img-top" src='{{car.imageUrl}}' alt="Card image cap">
+
+            <div class="card-body">
+                <h4 class="card-title">{{car.name}}</h4>
+                <h6>Model: {{car.model}} ({{car.yearOfProduction}})</h6>
+                <p class="card-text">Type: {{car.typeOfCar}}</p>
+                <p class="card-text">Gearbox: {{car.gearBox}}</p>
+                <p class="card-text">Number of seats: {{car.numberOfSeats}}</p>
+                <p class="card-text">Price per day: {{car.price | currency: "EUR" }}</p>
+
+                <a  (click)="sendOrderedCars(car)"
+                    class="btn btn-outline-dark"
+                    >Order Car
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

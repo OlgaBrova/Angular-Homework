@@ -1,0 +1,16 @@
+<div class="container">
+  <div><h2>Car Rental</h2></div>
+
+  <ul class="container__list">
+    <li 
+      routerLink="" 
+      routerLinkActive="custom-active-class" [routerLinkActiveOptions]="{ exact: true }" 
+    >Home</li>
+    <li routerLink="/cars" routerLinkActive="custom-active-class" >Cars</li>
+    <li routerLink="/ordered-cars" routerLinkActive="custom-active-class" >Ordered Cars</li>
+    <li routerLink="/contact" routerLinkActive="custom-active-class" >Contact</li>
+  </ul>
+</div>
+
+
+<router-outlet></router-outlet>

@@ -3,6 +3,6 @@
   <p class="order__field">Order Date: {{ boundOrder.orderDate | date:"fullDate"}}</p>
   <p class="order__field">Price: {{ boundOrder.price | currency: "EUR" }}</p>
   <p class="order__field">Active: {{ (boundOrder.active ? "Yes" : "No") | uppercase }}</p>
-  <button (click)="displayCar(boundOrder.car)">Display Car</button>
+  <button  (click)="displayCarOnBtn(boundOrder.car)">Display Car</button>
   <hr />
 </div>
