@@ -1,0 +1,22 @@
+.recipeForm {
+    width: 60%;
+    margin-top: 50px;
+    padding: 20px;
+    background: #1f43a88a;
+    box-shadow: 4px 4px 10px #454647;
+    border-radius: 2px;
+    color:#47253e;
+}
+
+label {
+    margin-top: 12px;
+}
+
+.btn {
+    margin-top: 15px;
+}
+
+.btn-dark {
+    margin-top: 40px;
+}
+

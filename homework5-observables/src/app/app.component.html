@@ -1,0 +1,24 @@
+<div class="container">
+    <div><h2>Food Recipes</h2></div>
+
+    <ul class="container__list">
+        <li 
+            routerLink="" 
+            routerLinkActive="custom-active-class"
+            [routerLinkActiveOptions]="{ exact: true }"
+        >Home</li>
+
+        <li 
+            routerLink="/all-recipes"
+            routerLinkActive="custom-active-class"
+        >Recipes</li>
+
+        <li
+            routerLink="/add-recipe"
+            routerLinkActive="custom-active-class"
+        >Add recipe</li>
+
+    </ul>
+</div>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,42 @@
+.container {
+    display: flex;
+    justify-content:space-between;
+    padding: 20px 15px 15px 15px;
+    margin: 10px auto;
+    background: #d89399;
+    box-shadow: 4px 4px 10px #454647;
+    color:#47253e;
+    border-radius: 2px;
+}
+
+.container__list {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+.container__list > li {
+    margin-right: 15px;
+    cursor: pointer;
+    position: relative;
+}
+
+.container__list > li:hover {
+    color: #47253e;
+    font-weight: bold;
+    transform: scale(1.06);
+}
+
+.container__list > li:active {
+    transform: scale(0.98);
+}
+
+.custom-active-class {
+    font-weight: bold;
+    color: #47253e; 
+}
+
+h2 {
+    color: #304f81;
+    font-weight: bold;
+}
