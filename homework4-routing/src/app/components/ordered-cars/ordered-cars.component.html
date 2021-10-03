@@ -1,8 +1,6 @@
 <h2>Cars you ordered:</h2>
 
-<!-- SEKOGAS MI GO PRINTA NASLOVOT ZA KOGA NEMA NARACANI KOLI IAKO IMAM USLOV NA NEGO, NEKADE GRESHAM. POSLE OVOJ KOD PROBAJ I SO IF ELSE AMA TAMU NE GI NI PRINTA KOLITE -->
-
-<div class="h3Tag" *ngIf="!!orderedCarsFromService">
+<div class="h3Tag" *ngIf="!areCarsOrdered()">
    <h3 >No cars ordered, would you like to order a car? If you do <span routerLink="/cars"><b>Click me!</b></span></h3>
 </div>
 
@@ -26,42 +24,5 @@
             </div>
         </div>
     </div>
-</div> -->
-
-
-
-<!-- PROBAV SO IF ELSE DA ISPRINTAM AMA SEKOGAS MI GO DAVA NASLOVOT DEKA NEMA KOLI I NE GI DAVA KOLITE -->
-
-<!-- <span  *ngIf="!!orderedCarsFromService; then content else render"></span>
-   
-<ng-template #content >
-    <div class="h3Tag" *ngIf="!!orderedCarsFromService">
-        <h3  >No cars ordered, would you like to order a car? If you do <span routerLink="/cars"><b>Click me!</b></span></h3>
-     </div>
-</ng-template>
-
-<ng-template #render>  
-    <div class="container">
-        <div class="row">
-            <div 
-            *ngFor="let orderedCar of orderedCarsFromService" 
-                class="card col-3" 
-                style="width: 18rem;">
-                
-                <img class="card-img-top" src='{{orderedCar.imageUrl}}' alt="Card image cap">
-
-                <div class="card-body">
-                    <h4 class="card-title">{{orderedCar.name}}</h4>
-                    <h6>Model: {{orderedCar.model}} ({{orderedCar.yearOfProduction}})</h6>
-                    <p class="card-text">Type: {{orderedCar.typeOfCar}}</p>
-                    <p class="card-text">Gearbox: {{orderedCar.gearBox}}</p>
-                    <p class="card-text">Number of seats: {{orderedCar.numberOfSeats}}</p>
-                    <p class="card-text">Price per day: {{orderedCar.price | currency: "EUR" }}</p>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</ng-template> -->
-
+</div> 
 

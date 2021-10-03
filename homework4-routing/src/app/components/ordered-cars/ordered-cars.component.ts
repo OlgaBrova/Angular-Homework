@@ -17,4 +17,8 @@ export class OrderedCarsComponent implements OnInit {
     this.orderedCarsFromService = this.carsService.orderedCarsList;
   }
 
+  areCarsOrdered() {
+    return this.orderedCarsFromService.length > 0;
+  }
+
 }
