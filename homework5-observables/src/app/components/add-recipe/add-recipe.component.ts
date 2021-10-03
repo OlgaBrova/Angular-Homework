@@ -16,7 +16,18 @@ export class AddRecipeComponent implements OnInit {
   newRecipeForm: FormGroup;
 
   ngOnInit(): void {
-    this.initForm();
+    
+
+    if(this.recipesService.editFlag === true) {
+      let recipeById = this.recipesService.recipeToEdit;
+
+      if(recipeById) {
+        this.initFormForEdit(recipeById);
+      }
+     
+    } else {
+      this.initForm();
+    }
   }
 
   initForm() {
@@ -29,8 +40,17 @@ export class AddRecipeComponent implements OnInit {
     })
   }
 
-  onReactiveFormSubmit() {
+  initFormForEdit(recipe: Recipe) {
 
+    this.newRecipeForm = new FormGroup({
+      name: new FormControl(recipe.name),
+      description: new FormControl(recipe.description),
+      imageUrl: new FormControl(recipe.imageUrl),
+      ingredients: new FormArray([])
+    })
+  }
+
+  onReactiveFormSubmit() {
     const { name, description, imageUrl, ingredients } = this.newRecipeForm.value;
 
     const recipe: Recipe = {
@@ -44,6 +64,24 @@ export class AddRecipeComponent implements OnInit {
 
     this.recipesService.addNewRecipe(recipe);
     this.newRecipeForm.reset();
+
+    if(this.recipesService.editFlag === true) {
+      const { name, description, imageUrl, ingredients } = this.newRecipeForm.value;
+
+      const recipe: Recipe = {
+        id: this.recipesService.recipeToEdit.id,
+        name, 
+        description,
+        imageUrl,
+        ingredients
+      }
+  
+      this.recipesService.editedRecipeSave(recipe);
+      this.recipesService.editFlag = false;
+      this.newRecipeForm.reset();
+    }
+
+
   }
 
   getIngredientsControls(): AbstractControl[] {

@@ -1,3 +1,4 @@
+import { NumberSymbol } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { Recipe } from '../interfaces/recipe';
@@ -14,6 +15,7 @@ export class RecipesServiceService {
 
   recipesArray: Recipe[] = [];
   editFlag: boolean = false;
+  recipeToEdit: Recipe;
 
   
   addNewRecipe(recipe: Recipe) {
@@ -38,29 +40,37 @@ export class RecipesServiceService {
   }
 
 
-
-  
   editRecipe(id: string | number) {
 
     let recipeToBeEdited = this.recipesArray.find((recipe) => recipe.id === id);
-    return recipeToBeEdited;
+    
+    if(recipeToBeEdited) {
+      this.recipeToEdit = recipeToBeEdited;
+    }
   }
 
+
+  //editedRecipeSave(id: string | number, name: string, description: string, imageUrl: string, ingredients: string[]) {
+  editedRecipeSave(editedRecipe: Recipe) {
+    const { id, name, description, imageUrl, ingredients } = editedRecipe;
+    
   
+    let remainingRecipes = this.recipesArray.filter((recipe) => recipe.id !== editedRecipe.id);
 
+    // if (!!recipeToBeEdited) {
+    //   recipeToBeEdited = { ...recipeToBeEdited, name, description, imageUrl, ingredients };
+    //   this.recipesArray = [ ...remainingRecipes, recipeToBeEdited ];
+    //   this._recipes.next(Object.assign([], this.recipesArray));
+    // }
 
-  // editRecipe(id: string | number) {
+    
+    if (!!editedRecipe) {
+    
+      this.recipesArray = [ ...remainingRecipes, editedRecipe ];
+      this._recipes.next(Object.assign([], this.recipesArray));
+    }
 
-  //   let recipeToBeEdited = this.recipesArray.find((recipe) => recipe.id === id);
-  //   let remainingRecipes = this.recipesArray.filter((recipe) => recipe.id !== id);
-
-  //   if (!!recipeToBeEdited) {
-  //     recipeToBeEdited = { ...recipeToBeEdited, name, description, imageUrl, ingredients };
-  //     this.recipesArray = [ ...remainingRecipes, recipeToBeEdited ];
-  //     this._recipes.next(Object.assign([], this.recipesArray));
-  //   }
-
-  // }
+  }
 
 
 
