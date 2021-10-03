@@ -50,28 +50,16 @@ export class RecipesServiceService {
   }
 
 
-  //editedRecipeSave(id: string | number, name: string, description: string, imageUrl: string, ingredients: string[]) {
   editedRecipeSave(editedRecipe: Recipe) {
-    const { id, name, description, imageUrl, ingredients } = editedRecipe;
-    
-  
+
     let remainingRecipes = this.recipesArray.filter((recipe) => recipe.id !== editedRecipe.id);
 
-    // if (!!recipeToBeEdited) {
-    //   recipeToBeEdited = { ...recipeToBeEdited, name, description, imageUrl, ingredients };
-    //   this.recipesArray = [ ...remainingRecipes, recipeToBeEdited ];
-    //   this._recipes.next(Object.assign([], this.recipesArray));
-    // }
-
-    
-    if (!!editedRecipe) {
+    if (!!editedRecipe && this.editFlag === true) {
     
       this.recipesArray = [ ...remainingRecipes, editedRecipe ];
       this._recipes.next(Object.assign([], this.recipesArray));
     }
 
   }
-
-
 
 }

@@ -17,7 +17,6 @@ export class AddRecipeComponent implements OnInit {
 
   ngOnInit(): void {
     
-
     if(this.recipesService.editFlag === true) {
       let recipeById = this.recipesService.recipeToEdit;
 
@@ -31,7 +30,6 @@ export class AddRecipeComponent implements OnInit {
   }
 
   initForm() {
-
     this.newRecipeForm = new FormGroup({
       name: new FormControl(null),
       description: new FormControl(null),
@@ -41,7 +39,6 @@ export class AddRecipeComponent implements OnInit {
   }
 
   initFormForEdit(recipe: Recipe) {
-
     this.newRecipeForm = new FormGroup({
       name: new FormControl(recipe.name),
       description: new FormControl(recipe.description),
@@ -51,20 +48,22 @@ export class AddRecipeComponent implements OnInit {
   }
 
   onReactiveFormSubmit() {
-    const { name, description, imageUrl, ingredients } = this.newRecipeForm.value;
+    if(this.recipesService.editFlag === false) {
+      const { name, description, imageUrl, ingredients } = this.newRecipeForm.value;
 
-    const recipe: Recipe = {
-      id: UUID.UUID(),
-      name, 
-      description,
-      imageUrl,
-      ingredients
-    }
-    console.log(recipe);
+      const recipe: Recipe = {
+        id: UUID.UUID(),
+        name, 
+        description,
+        imageUrl,
+        ingredients
+      }
+      console.log(recipe);
 
-    this.recipesService.addNewRecipe(recipe);
-    this.newRecipeForm.reset();
-
+      this.recipesService.addNewRecipe(recipe);
+      this.newRecipeForm.reset();
+    } 
+    
     if(this.recipesService.editFlag === true) {
       const { name, description, imageUrl, ingredients } = this.newRecipeForm.value;
 
@@ -81,7 +80,6 @@ export class AddRecipeComponent implements OnInit {
       this.newRecipeForm.reset();
     }
 
-
   }
 
   getIngredientsControls(): AbstractControl[] {
@@ -92,7 +90,5 @@ export class AddRecipeComponent implements OnInit {
     const control = new FormControl(null, Validators.required);
     (<FormArray>this.newRecipeForm.get('ingredients'))?.push(control);
   }
-
-
 
 }
