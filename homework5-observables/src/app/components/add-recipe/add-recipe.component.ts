@@ -45,6 +45,10 @@ export class AddRecipeComponent implements OnInit {
       imageUrl: new FormControl(recipe.imageUrl),
       ingredients: new FormArray([])
     })
+    recipe.ingredients.forEach((ingredient) => {
+      const control = new FormControl(ingredient, Validators.required);
+      (<FormArray>this.newRecipeForm.get('ingredients'))?.push(control);
+    })
   }
 
   onReactiveFormSubmit() {
