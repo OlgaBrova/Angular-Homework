@@ -1,0 +1,112 @@
+<form 
+ [formGroup]="newProductForm" 
+ (ngSubmit)="onReactiveFormSubmit()"
+ >
+    <div class="container">
+        <h3>Add a new product:</h3>
+        
+        <div class="form-group">
+            <label for="title">Product title:</label>
+            <br>
+            <input  
+                type="text"
+                class="form-control"
+                id="title"
+                autocomplete="off" 
+                formControlName="title"
+            />
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="category">Product category:</label>
+            <br>
+            <input  
+                type="text"
+                class="form-control"
+                id="category"
+                autocomplete="off" 
+                formControlName="category"
+            />
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="description">Product description:</label>
+            <br>
+            <input 
+                type="text"
+                class="form-control" 
+                id="description"
+                autocomplete="off"
+                formControlName="description"
+            />
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="image">Product image url:</label>
+            <br>
+            <input 
+                type="text"
+                class="form-control" 
+                id="image"
+                autocomplete="off"
+                formControlName="image"
+            />
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="price">Product price:</label>
+            <br>
+            <input 
+                type="text"
+                class="form-control" 
+                id="price"
+                autocomplete="off"
+                formControlName="price"
+            />
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="rate">Product rate:</label>
+            <br>
+            <input 
+                type="text"
+                class="form-control" 
+                id="rate"
+                autocomplete="off"
+                formControlName="rate"
+            />
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="count">Products in stock:</label>
+            <br>
+            <input 
+                type="text"
+                class="form-control" 
+                id="count"
+                autocomplete="off"
+                formControlName="count"
+            />
+        </div>
+        <br>
+
+        <button type="submit">Submit</button>
+    </div>     
+</form>
+
+
+
+<!-- export interface Rating {
+    rate: number;
+    count: string;
+  }
+  
+  export interface Product {
+    id: number;
+   
+   
+  
+    
+    rating: Rating;
+  }
+   -->
