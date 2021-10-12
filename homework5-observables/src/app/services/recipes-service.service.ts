@@ -17,28 +17,20 @@ export class RecipesServiceService {
   editFlag: boolean = false;
   recipeToEdit: Recipe;
 
-  
   addNewRecipe(recipe: Recipe) {
     console.log(recipe);
 
-    this.recipesArray.push(recipe);
-    this._recipes.next(Object.assign([], this.recipesArray));
-
-    //Zoshto next ne funkcionira kaj $recipes?
-    //this.$recipes.next(Object.assign([], this.recipesArray));
+    const alreadyExistingRecipes: Recipe[] = this._recipes.getValue();
+    this._recipes.next([...alreadyExistingRecipes, recipe]);
   }
 
   deleteRecipe(id: number | string) {
-    this.recipesArray.forEach((recipe, i) => {
 
-      if(recipe.id === id) {
-        this.recipesArray.splice(i, 1);
-      }
-
-      this._recipes.next(Object.assign([], this.recipesArray));
-    })
+    const alreadyExistingRecipes: Recipe[] = this._recipes.getValue();
+    const filteredArray = alreadyExistingRecipes.filter((recipe) => recipe.id !== id);
+    
+    this._recipes.next(filteredArray);
   }
-
 
   editRecipe(id: string | number) {
 
@@ -49,17 +41,14 @@ export class RecipesServiceService {
     }
   }
 
-
   editedRecipeSave(editedRecipe: Recipe) {
 
-    let remainingRecipes = this.recipesArray.filter((recipe) => recipe.id !== editedRecipe.id);
+    const alreadyExistingRecipes: Recipe[] = this._recipes.getValue();
+    let remainingRecipes = alreadyExistingRecipes.filter((recipe) => recipe.id !== editedRecipe.id);
 
     if (!!editedRecipe && this.editFlag === true) {
     
-      this.recipesArray = [ ...remainingRecipes, editedRecipe ];
-      this._recipes.next(Object.assign([], this.recipesArray));
+      this._recipes.next([ ...remainingRecipes, editedRecipe ]);
     }
-
   }
-
 }

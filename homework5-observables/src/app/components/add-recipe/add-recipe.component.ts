@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormArray, AbstractControl, FormControl, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormArray,
+  AbstractControl,
+  FormControl,
+  Validators,
+} from '@angular/forms';
 import { UUID } from 'angular2-uuid';
 import { Recipe } from 'src/app/interfaces/recipe';
 import { RecipesServiceService } from 'src/app/services/recipes-service.service';
@@ -7,23 +13,18 @@ import { RecipesServiceService } from 'src/app/services/recipes-service.service'
 @Component({
   selector: 'app-add-recipe',
   templateUrl: './add-recipe.component.html',
-  styleUrls: ['./add-recipe.component.css']
+  styleUrls: ['./add-recipe.component.css'],
 })
 export class AddRecipeComponent implements OnInit {
-
-  constructor(private recipesService: RecipesServiceService) { }
+  constructor(private recipesService: RecipesServiceService) {}
 
   newRecipeForm: FormGroup;
 
   ngOnInit(): void {
-    
-    if(this.recipesService.editFlag === true) {
-      let recipeById = this.recipesService.recipeToEdit;
+    let recipeById = this.recipesService.recipeToEdit;
 
-      if(recipeById) {
-        this.initFormForEdit(recipeById);
-      }
-     
+    if (this.recipesService.editFlag && recipeById) {
+      this.initFormForEdit(recipeById);
     } else {
       this.initForm();
     }
@@ -34,8 +35,8 @@ export class AddRecipeComponent implements OnInit {
       name: new FormControl(null),
       description: new FormControl(null),
       imageUrl: new FormControl(null),
-      ingredients: new FormArray([])
-    })
+      ingredients: new FormArray([]),
+    });
   }
 
   initFormForEdit(recipe: Recipe) {
@@ -43,47 +44,48 @@ export class AddRecipeComponent implements OnInit {
       name: new FormControl(recipe.name),
       description: new FormControl(recipe.description),
       imageUrl: new FormControl(recipe.imageUrl),
-      ingredients: new FormArray([])
-    })
+      ingredients: new FormArray([]),
+    });
     recipe.ingredients.forEach((ingredient) => {
       const control = new FormControl(ingredient, Validators.required);
       (<FormArray>this.newRecipeForm.get('ingredients'))?.push(control);
-    })
+    });
   }
 
   onReactiveFormSubmit() {
-    if(this.recipesService.editFlag === false) {
-      const { name, description, imageUrl, ingredients } = this.newRecipeForm.value;
+    if (this.recipesService.editFlag === false) {
+      const { name, description, imageUrl, ingredients } =
+        this.newRecipeForm.value;
 
       const recipe: Recipe = {
         id: UUID.UUID(),
-        name, 
+        name,
         description,
         imageUrl,
-        ingredients
-      }
+        ingredients,
+      };
       console.log(recipe);
 
       this.recipesService.addNewRecipe(recipe);
       this.newRecipeForm.reset();
-    } 
-    
-    if(this.recipesService.editFlag === true) {
-      const { name, description, imageUrl, ingredients } = this.newRecipeForm.value;
+    }
+
+    if (this.recipesService.editFlag === true) {
+      const { name, description, imageUrl, ingredients } =
+        this.newRecipeForm.value;
 
       const recipe: Recipe = {
         id: this.recipesService.recipeToEdit.id,
-        name, 
+        name,
         description,
         imageUrl,
-        ingredients
-      }
-  
+        ingredients,
+      };
+
       this.recipesService.editedRecipeSave(recipe);
       this.recipesService.editFlag = false;
       this.newRecipeForm.reset();
     }
-
   }
 
   getIngredientsControls(): AbstractControl[] {
@@ -94,5 +96,4 @@ export class AddRecipeComponent implements OnInit {
     const control = new FormControl(null, Validators.required);
     (<FormArray>this.newRecipeForm.get('ingredients'))?.push(control);
   }
-
 }
